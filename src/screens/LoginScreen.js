@@ -18,6 +18,13 @@ const { width, height } = Dimensions.get('window');
 const LoginScreen = ({ navigation = null }) => {
   const [email, setEmail] = useState('');
 
+  const handleContinueWithEmail = () => {
+    if (email.trim() && navigation) {
+      // Navigate to email verification screen with email parameter
+      navigation.navigate(email.trim());
+    }
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
@@ -54,7 +61,7 @@ const LoginScreen = ({ navigation = null }) => {
           </View>
 
           {/* Continue with Email Button */}
-          <TouchableOpacity style={styles.emailButton}>
+          <TouchableOpacity style={styles.emailButton} onPress={handleContinueWithEmail}>
             <Text style={styles.emailButtonText}>Continue with Email</Text>
           </TouchableOpacity>
 
@@ -103,7 +110,7 @@ const styles = StyleSheet.create({
   },
   bottomSection: {
     flex: 0.6,
-    backgroundColor: '#FF6B47',
+    backgroundColor: '#FF8A65',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 24,
