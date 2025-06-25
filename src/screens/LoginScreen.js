@@ -15,7 +15,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const { width, height } = Dimensions.get('window');
 
-const LoginScreen = ({ navigation = null }) => {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
 
   const handleContinueWithEmail = () => {
@@ -204,3 +204,4 @@ const styles = StyleSheet.create({
 });
 
 export default LoginScreen;
+ 
