@@ -164,8 +164,8 @@ const MainScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       
-      {/* Extra top padding for Samsung Ultra devices */}
-      <View style={styles.topSafeArea} />
+      {/* Extra top padding for Samsung Ultra devices only - not for iOS */}
+      {Platform.OS === 'android' && <View style={styles.topSafeArea} />}
      
       {/* Header */}
       <View style={styles.header}>
@@ -303,9 +303,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
+    paddingTop: Platform.OS === 'ios' ? 0 : 0, // Let SafeAreaView handle iOS padding
   },
   topSafeArea: {
-    height: 20, // Extra padding for Samsung Ultra devices
+    height: 20, // Extra padding for Samsung Ultra devices only
     backgroundColor: '#ffffff',
   },
   header: {
@@ -313,7 +314,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingVertical: 15,
+    paddingVertical: Platform.OS === 'ios' ? 10 : 15,
     backgroundColor: '#ffffff',
   },
   menuButton: {
