@@ -28,7 +28,7 @@ const SplashScreen = ({ navigation = null }) => {
       <StatusBar barStyle="light-content" backgroundColor="#ffffff" />
       <View style={styles.logoContainer}>
         <Image
-          source={require('../assets/images/logo.png')}
+          source={require('../assets/images/logo2.png')}
           style={styles.logo}
           resizeMode="contain"
           fadeDuration={0}

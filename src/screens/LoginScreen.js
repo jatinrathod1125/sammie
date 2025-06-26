@@ -32,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
       {/* Top Section with Logo */}
       <View style={styles.topSection}>
         <Image
-          source={require('../assets/images/logo.png')}
+          source={require('../assets/images/logo2.png')}
           style={styles.logo}
           resizeMode="contain"
           fadeDuration={0}
@@ -105,8 +105,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   logo: {
-    width: 200,
-    height: 80,
+    width: 221,
+    height: 125,
+    resizeMode: 'contain',
   },
   bottomSection: {
     flex: 0.6,

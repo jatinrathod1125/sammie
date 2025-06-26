@@ -178,7 +178,7 @@ const MainScreen = ({ navigation }) => {
         </TouchableOpacity>
         
         <Image
-          source={require('../assets/images/logo.png')}
+          source={require('../assets/images/logo2.png')}
           style={styles.headerLogo}
           resizeMode="contain"
           fadeDuration={0}
@@ -342,8 +342,8 @@ const styles = StyleSheet.create({
     width: 20,
   },
   headerLogo: {
-    width: 120,
-    height: 40,
+    width: 200,
+    height: 50,
   },
   editButton: {
     width: 24,

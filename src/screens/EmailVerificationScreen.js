@@ -41,7 +41,7 @@ const EmailVerificationScreen = ({ navigation, route }) => {
       {/* Logo Section */}
       <View style={styles.logoContainer}>
         <Image
-          source={require('../assets/images/logo.png')}
+          source={require('../assets/images/logo2.png')}
           style={styles.logo}
           resizeMode="contain"
           fadeDuration={0}
@@ -97,8 +97,9 @@ const styles = StyleSheet.create({
     marginVertical: 30,
   },
   logo: {
-    width: 180,
-    height: 70,
+    width: 221,
+    height: 125,
+    resizeMode: 'contain',
   },
   contentCard: {
     backgroundColor: '#FF8A65',
