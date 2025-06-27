@@ -127,7 +127,7 @@ const SettingsScreen = ({ navigation, onClose }) => {
             <TouchableOpacity style={styles.menuItem} onPress={handleChangeProfilePress}>
               <View style={styles.menuItemLeft}>
                 <FontAwesome name="user-circle-o" size={20} color="#333333" />
-                <Text style={styles.menuItemTitle}>Change Profile Photo</Text>
+                <Text style={[styles.menuItemTitle, { marginLeft: 12 }]}>Change Profile Photo</Text>
               </View>
               <FontAwesome name="chevron-right" size={16} color="#CCCCCC" />
             </TouchableOpacity>
@@ -135,7 +135,7 @@ const SettingsScreen = ({ navigation, onClose }) => {
             <TouchableOpacity style={styles.menuItem} onPress={handleDataControlsPress}>
               <View style={styles.menuItemLeft}>
                 <FontAwesome name="database" size={20} color="#333333" />
-                <Text style={styles.menuItemTitle}>Data Controls</Text>
+                <Text style={[styles.menuItemTitle, { marginLeft: 12 }]}>Data Controls</Text>
               </View>
               <FontAwesome name="chevron-right" size={16} color="#CCCCCC" />
             </TouchableOpacity>
@@ -149,7 +149,7 @@ const SettingsScreen = ({ navigation, onClose }) => {
             <TouchableOpacity style={styles.menuItem} onPress={handleSupportPress}>
               <View style={styles.menuItemLeft}>
                 <FontAwesome name="question-circle-o" size={20} color="#333333" />
-                <Text style={styles.menuItemTitle}>Support</Text>
+                <Text style={[styles.menuItemTitle, { marginLeft: 12 }]}>Support</Text>
               </View>
               <FontAwesome name="chevron-right" size={16} color="#CCCCCC" />
             </TouchableOpacity>
@@ -157,7 +157,7 @@ const SettingsScreen = ({ navigation, onClose }) => {
             <TouchableOpacity style={styles.menuItem} onPress={handleRequestFeaturesPress}>
               <View style={styles.menuItemLeft}>
                 <FontAwesome name="plus-circle" size={20} color="#333333" />
-                <Text style={styles.menuItemTitle}>Request New Features!</Text>
+                <Text style={[styles.menuItemTitle, { marginLeft: 12 }]}>Request New Features!</Text>
               </View>
               <FontAwesome name="chevron-right" size={16} color="#CCCCCC" />
             </TouchableOpacity>
@@ -165,7 +165,7 @@ const SettingsScreen = ({ navigation, onClose }) => {
             <TouchableOpacity style={styles.menuItem} onPress={handleTermsPress}>
               <View style={styles.menuItemLeft}>
                 <FontAwesome name="file-text-o" size={20} color="#333333" />
-                <Text style={styles.menuItemTitle}>Terms Of Use</Text>
+                <Text style={[styles.menuItemTitle, { marginLeft: 12 }]}>Terms Of Use</Text>
               </View>
               <FontAwesome name="chevron-right" size={16} color="#CCCCCC" />
             </TouchableOpacity>
@@ -173,7 +173,7 @@ const SettingsScreen = ({ navigation, onClose }) => {
             <TouchableOpacity style={styles.menuItem} onPress={handlePrivacyPress}>
               <View style={styles.menuItemLeft}>
                 <FontAwesome name="shield" size={20} color="#333333" />
-                <Text style={styles.menuItemTitle}>Privacy Policy</Text>
+                <Text style={[styles.menuItemTitle, { marginLeft: 12 }]}>Privacy Policy</Text>
               </View>
               <FontAwesome name="chevron-right" size={16} color="#CCCCCC" />
             </TouchableOpacity>
@@ -186,7 +186,7 @@ const SettingsScreen = ({ navigation, onClose }) => {
             <TouchableOpacity style={styles.logoutItem} onPress={handleLogOutPress}>
               <View style={styles.menuItemLeft}>
                 <FontAwesome name="sign-out" size={20} color="#333333" />
-                <Text style={styles.menuItemTitle}>Log Out</Text>
+                <Text style={[styles.menuItemTitle, { marginLeft: 12 }]}>Log Out</Text>
               </View>
               <FontAwesome name="chevron-right" size={16} color="#CCCCCC" />
             </TouchableOpacity>
@@ -415,7 +415,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '500',
     color: '#333333',
-    marginLeft: 12,
   },
   menuItemSubtitle: {
     fontSize: 13,

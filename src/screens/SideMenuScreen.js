@@ -184,36 +184,46 @@ const SideMenuScreen = ({ navigation, onClose }) => {
           </BlurView>
           
           {/* Context Menu Content */}
-          <View style={styles.contextMenuContent}>
-            {/* Preview Card */}
-            <View style={styles.previewCard}>
-              <Text style={styles.previewText}>
-                {selectedItem}
-              </Text>
+          <View style={styles.contextMenuWrapper}>
+            {/* Chat Content Container */}
+            <View style={styles.chatContentContainer}>
+              {/* Chat Bubble with Message */}
+              <View style={styles.chatBubble}>
+                <Text style={styles.chatBubbleText}>
+                  Make me an image of a cat running on a treadmill
+                </Text>
+              </View>
+              
+              {/* Generated Image */}
               <Image
                 source={{
-                  uri: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=200&h=200&fit=crop&crop=center'
+                  uri: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=300&h=200&fit=crop&crop=center'
                 }}
-                style={styles.previewImage}
+                style={styles.generatedImage}
                 resizeMode="cover"
               />
+              
+              {/* Response Text */}
+              <Text style={styles.responseText}>
+                Here's the image of a cat running on a treadmill. I hope you find it amusing and whimsical!
+              </Text>
             </View>
             
-            {/* Menu Actions */}
-            <View style={styles.menuActions}>
-              <TouchableOpacity style={styles.menuActionButton} onPress={handleShareChat}>
-                <FontAwesome name="share" size={18} color="#007AFF" />
-                <Text style={styles.menuActionText}>Share Chat</Text>
+            {/* All Action Buttons - Single Container */}
+            <View style={styles.actionButtonsContainer}>
+              <TouchableOpacity style={styles.actionButton} onPress={handleShareChat}>
+                <Text style={styles.actionButtonText}>Share Chat</Text>
+                <FontAwesome name="share-square-o" size={20} color="#333333" />
               </TouchableOpacity>
               
-              <TouchableOpacity style={styles.menuActionButton} onPress={handleRename}>
-                <FontAwesome name="edit" size={18} color="#007AFF" />
-                <Text style={styles.menuActionText}>Rename</Text>
+              <TouchableOpacity style={[styles.actionButton, { marginTop: 8 }]} onPress={handleRename}>
+                <Text style={styles.actionButtonText}>Rename</Text>
+                <FontAwesome name="edit" size={20} color="#333333" />
               </TouchableOpacity>
               
-              <TouchableOpacity style={styles.menuActionButton} onPress={handleDelete}>
-                <FontAwesome name="trash" size={18} color="#FF3B30" />
-                <Text style={[styles.menuActionText, { color: '#FF3B30' }]}>Delete</Text>
+              <TouchableOpacity style={[styles.actionButton, { borderBottomWidth: 0 }]} onPress={handleDelete}>
+                <Text style={[styles.actionButtonText, { color: '#FF3B30' }]}>Delete</Text>
+                <FontAwesome name="trash" size={20} color="#FF3B30" />
               </TouchableOpacity>
             </View>
           </View>
@@ -223,44 +233,41 @@ const SideMenuScreen = ({ navigation, onClose }) => {
       {/* Delete Confirmation Modal */}
       <Modal
         visible={isDeleteModalOpen}
-        animationType="fade"
+        animationType="slide"
         transparent={true}
         onRequestClose={handleDeleteCancel}
       >
         <View style={styles.deleteModalContainer}>
-          <BlurView
-            style={styles.deleteModalOverlay}
-            blurType="dark"
-            blurAmount={Platform.OS === 'ios' ? 15 : 20}
-            reducedTransparencyFallbackColor="#000000"
-            overlayColor={Platform.OS === 'android' ? 'rgba(0, 0, 0, 0.3)' : 'transparent'}
-          >
+          <View style={styles.deleteModalOverlay}>
             <TouchableOpacity 
               style={styles.deleteOverlayTouchable} 
               activeOpacity={1} 
               onPress={handleDeleteCancel}
             />
-          </BlurView>
+          </View>
           
           <View style={styles.deleteModalContent}>
-            <Text style={styles.deleteModalTitle}>Delete Chat</Text>
-            <Text style={styles.deleteModalMessage}>Are you sure? This can't be undone.</Text>
-            
-            <View style={styles.deleteModalButtons}>
+            {/* Warning Message Card */}
+            <View style={styles.warningMessageCard}>
+              <Text style={styles.deleteModalTitle}>Delete Chat</Text>
+              <Text style={styles.deleteModalMessage}>Are you sure? This can't be undone.</Text>
+              <View style={styles.divider} />
+              
               <TouchableOpacity 
-                style={[styles.deleteModalButton, styles.deleteButton]} 
+                style={styles.confirmButtonCard} 
                 onPress={handleDeleteConfirm}
               >
                 <Text style={styles.deleteButtonText}>Delete</Text>
               </TouchableOpacity>
-              
-              <TouchableOpacity 
-                style={[styles.deleteModalButton, styles.cancelButton]} 
-                onPress={handleDeleteCancel}
-              >
-                <Text style={styles.cancelButtonText}>Cancel</Text>
-              </TouchableOpacity>
             </View>
+            
+            {/* Cancel Button Card */}
+            <TouchableOpacity 
+              style={styles.cancelButtonCard} 
+              onPress={handleDeleteCancel}
+            >
+              <Text style={styles.cancelButtonText}>Cancel</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -272,25 +279,23 @@ const SideMenuScreen = ({ navigation, onClose }) => {
         transparent={true}
         onRequestClose={handleSettingsClose}
       >
-        <View style={styles.modalContainer}>
-          <BlurView
-            style={styles.modalOverlay}
-            blurType="dark"
-            blurAmount={Platform.OS === 'ios' ? 20 : 25}
-            reducedTransparencyFallbackColor="#000000"
-            overlayColor={Platform.OS === 'android' ? 'rgba(0, 0, 0, 0.2)' : 'transparent'}
-            downsampleFactor={Platform.OS === 'android' ? 10 : 25}
-          >
-            <TouchableOpacity 
-              style={styles.overlayTouchable} 
-              activeOpacity={1} 
-              onPress={handleSettingsClose}
-            />
-          </BlurView>
-          <View style={styles.modalContent}>
+        <BlurView
+          style={styles.settingsModalOverlay}
+          blurType="dark"
+          blurAmount={Platform.OS === 'ios' ? 25 : 30}
+          reducedTransparencyFallbackColor="#000000"
+          overlayColor={Platform.OS === 'android' ? 'rgba(0, 0, 0, 0.4)' : 'rgba(0, 0, 0, 0.3)'}
+          downsampleFactor={Platform.OS === 'android' ? 10 : 25}
+        >
+          <TouchableOpacity 
+            style={styles.settingsOverlayTouchable} 
+            activeOpacity={1} 
+            onPress={handleSettingsClose}
+          />
+          <View style={styles.settingsModalContent}>
             <SettingsScreen onClose={handleSettingsClose} />
           </View>
-        </View>
+        </BlurView>
       </Modal>
     </SafeAreaView>
   );
@@ -397,6 +402,28 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     overflow: 'hidden',
   },
+  // Settings Modal Styles
+  settingsModalOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'flex-end',
+    marginTop:50,
+  },
+  settingsOverlayTouchable: {
+    flex: 1,
+    width: '100%',
+  },
+  settingsModalContent: {
+    height: height * 0.75,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    overflow: 'hidden',
+  },
   // Context Menu Styles
   contextModalContainer: {
     flex: 1,
@@ -414,73 +441,90 @@ const styles = StyleSheet.create({
   contextOverlayTouchable: {
     flex: 1,
   },
-  contextMenuContent: {
-    backgroundColor: 'transparent',
-    alignItems: 'center',
+  contextMenuWrapper: {
+    alignItems: 'flex-start',
     maxWidth: width * 0.85,
+    width: width * 0.85,
   },
-  previewCard: {
+  chatContentContainer: {
     backgroundColor: '#ffffff',
     borderRadius: 16,
     padding: 20,
+    alignItems: 'flex-start',
+    width: '100%',
     marginBottom: 16,
-    width: width * 0.8,
-    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 4,
     },
     shadowOpacity: 0.3,
-    shadowRadius: 10,
-    elevation: 8,
+    shadowRadius: 12,
+    elevation: 10,
   },
-  previewText: {
-    fontSize: 16,
-    color: '#333333',
-    textAlign: 'center',
-    marginBottom: 12,
-    fontWeight: '500',
-  },
-  previewImage: {
-    width: 80,
-    height: 80,
+  chatBubble: {
     backgroundColor: '#F0F0F0',
     borderRadius: 12,
+    padding: 12,
+    marginBottom: 16,
+    alignSelf: 'flex-start',
+    maxWidth: '85%',
   },
-  menuActions: {
-    backgroundColor: '#ffffff',
+  chatBubbleText: {
+    fontSize: 16,
+    color: '#333333',
+    fontWeight: '400',
+    lineHeight: 20,
+  },
+  generatedImage: {
+    width: '100%',
+    height: 300,
     borderRadius: 12,
-    width: width * 0.6,
-    overflow: 'hidden',
+    marginBottom: 12,
+    backgroundColor: '#F5F5F5',
+  },
+  responseText: {
+    fontSize: 14,
+    color: '#666666',
+    textAlign: 'left',
+    marginBottom: 0,
+    lineHeight: 18,
+    alignSelf: 'flex-start',
+  },
+
+  actionButtonsContainer: {
+    width: width * 0.7,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    paddingVertical: 4,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 4,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 5,
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 10,
   },
-  menuActionButton: {
+  actionButton: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     paddingVertical: 16,
     paddingHorizontal: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#F0F0F0',
   },
-  menuActionText: {
+  actionButtonText: {
     fontSize: 16,
-    color: '#007AFF',
-    marginLeft: 12,
-    fontWeight: '500',
+    color: '#333333',
+    fontWeight: '400',
+    flex: 1,
   },
   // Delete Modal Styles
   deleteModalContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-end',
     backgroundColor: 'transparent',
   },
   deleteModalOverlay: {
@@ -489,24 +533,26 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
   deleteOverlayTouchable: {
     flex: 1,
   },
   deleteModalContent: {
+    backgroundColor: 'transparent',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: Platform.OS === 'ios' ? 44 : 24,
+    minHeight: 250,
+  },
+  warningMessageCard: {
     backgroundColor: '#ffffff',
     borderRadius: 16,
-    padding: 24,
-    width: width * 0.85,
+    padding: 20,
+    marginBottom: 16,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    elevation: 8,
   },
   deleteModalTitle: {
     fontSize: 18,
@@ -516,36 +562,42 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   deleteModalMessage: {
-    fontSize: 16,
-    color: '#666666',
+    fontSize: 18,
+    color: '#333333',
     textAlign: 'center',
-    marginBottom: 24,
-    lineHeight: 22,
+    lineHeight: 20,
+    fontWeight: '400',
   },
-  deleteModalButtons: {
+  divider: {
+    height: 1,
+    backgroundColor: '#111111',
+    opacity: 0.4,
+    marginTop: 18,
+    marginBottom: 12,
     width: '100%',
-    gap: 12,
   },
-  deleteModalButton: {
-    paddingVertical: 14,
-    borderRadius: 8,
+  confirmButtonCard: {
+    height: 40,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    paddingVertical: 4,
     alignItems: 'center',
   },
-  deleteButton: {
-    backgroundColor: '#FF3B30',
-  },
-  cancelButton: {
-    backgroundColor: '#007AFF',
+  cancelButtonCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    paddingVertical: 18,
+    alignItems: 'center',
   },
   deleteButtonText: {
-    color: '#ffffff',
-    fontSize: 16,
+    fontSize: 18,
+    color: '#FF3B30',
     fontWeight: '600',
   },
   cancelButtonText: {
-    color: '#ffffff',
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 18,
+    color: '#007AFF',
+    fontWeight: '500',
   },
 });
 

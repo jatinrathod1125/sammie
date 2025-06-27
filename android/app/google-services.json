@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "56094510023",
+    "project_id": "sammie-7c952",
+    "storage_bucket": "sammie-7c952.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56094510023:android:07fc2e69d7b8ee34e827e2",
+        "android_client_info": {
+          "package_name": "com.sammie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGy4D2y3YwnmMJ7nKU0i7_UFe0DTqyp90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
